@@ -23,7 +23,7 @@
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
       <version>6.0.0</version>
-      <scope>providUsered</scope>
+      <scope>provided</scope>
     </dependency>
 
     <!-- Spring Core & MVC -->
