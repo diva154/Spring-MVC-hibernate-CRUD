@@ -152,8 +152,55 @@ MySQL Database
 
 \* IntelliJ IDEA - Development environment
 
+##User Validation
 
+The application includes server-side validation for user input.
 
+First Name and Last Name Validation
+
+The firstName and lastName fields are validated using Jakarta Bean Validation.
+
+Names cannot contain numbers or other non-letter characters.
+The validation is implemented using the @Pattern annotation in the User model.
+The controller uses @Valid to trigger validation when the form is submitted.
+If validation fails, BindingResult contains the validation errors and the user is returned to the form instead of saving invalid data.
+
+Validation Messages in Thymeleaf
+
+The validation error is displayed to the user using Thymeleaf.
+
+This allows the user to see an appropriate message when an invalid name is entered.
+
+##Spring Application Contexts
+
+A typical Spring MVC application has two contexts:
+
+$Root Application Context
+
+The Root Application Context contains the application's core/business components.
+
+It is responsible for components such as:
+
+Services
+DAOs / Repositories
+Database configuration
+Transaction management
+Other business-related components
+
+In this project, AppConfig is used for the Root Application Context.
+
+$DispatcherServlet Context
+
+The DispatcherServlet Context is responsible for web/MVC components.
+
+It contains components such as:
+
+Controllers
+MVC configuration
+Thymeleaf view configuration
+View resolvers
+
+In this project, WebConfig is used for the DispatcherServlet Context.
 \## Database Setup
 
 
