@@ -5,20 +5,28 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 //Replaces web.xml by inheriting from
 // AbstractAnnotationConfigDispatcherServletInitializer.
-public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class AppInitializer
+        extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{ DatabaseConfig.class };
+        return new Class<?>[]{
+                AppConfig.class
+        };
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] { AppConfig.class};
+        return new Class<?>[]{
+                WebConfig.class
+        };
     }
 
     @Override
     protected String[] getServletMappings() {
-        return new String[]{"/"};
+        return new String[]{
+                "/"
+        };
     }
 }
+
