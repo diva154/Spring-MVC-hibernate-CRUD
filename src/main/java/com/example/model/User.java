@@ -14,13 +14,13 @@ public class User {
     private Long id;
     @Pattern(
             regexp = "^[a-zA-Z]+$",
-            message = "First name must contain only letters" )
+            message = "First name must contain only letters")
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
- @Pattern(
-         regexp = "^[a-zA-Z]+$",
-         message = "Last name must contain only letters" )
+    @Pattern(
+            regexp = "^[a-zA-Z]+$",
+            message = "Last name must contain only letters")
 
 //But this alone won't display the message to the user. You also need @Valid + BindingResult
 // in your controller and th:errors in your Thymeleaf form.

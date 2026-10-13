@@ -3,6 +3,7 @@ package com.example.config;
 //create a database in mySql and setup connection here with annotations
 //Database & Persistence Configuration (DatabaseConfig.java)
 //Configures DataSource, LocalContainerEntityManagerFactoryBean, and JpaTransactionManager.
+
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -23,20 +24,21 @@ import java.util.Properties;
 //Spring, find db.properties on the application's classpath and load its properties.
 @PropertySource("classpath:db.properties")
 public class DatabaseConfig {
-//asks Spring:
+    //asks Spring:
 //Give me the value associated with db.url.
 //This is why ${...} is called a property placeholder.
-        @Value("${db.url}")
-        private String url;
+    @Value("${db.url}")
+    private String url;
 
-        @Value("${db.username}")
-        private String username;
+    @Value("${db.username}")
+    private String username;
 
-        @Value("${db.password}")
-        private String password;
+    @Value("${db.password}")
+    private String password;
 
-        @Value("${db.driver}")
-        private String driver;
+    @Value("${db.driver}")
+    private String driver;
+
     @Bean
     public DataSource dataSource() {
 
@@ -65,12 +67,14 @@ public class DatabaseConfig {
         em.setJpaProperties(hibernateProperties());
         return em;
     }
-        @Bean
-                public PlatformTransactionManager transactionManager(){
-            JpaTransactionManager transactionManager = new JpaTransactionManager();
-            transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
-            return transactionManager;
-        }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        return transactionManager;
+    }
+
     private Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");

@@ -8,24 +8,24 @@
 <h2 th:text="${user.id == null} ? 'Add New User' : 'Edit User'">User Form</h2>
 
 <form th:action="@{/users/save}" th:object="${user}" method="post">
-    <input type="hidden" th:field="*{id}" />
+    <input type="hidden" th:field="*{id}"/>
 
     <label>First Name:</label><br>
-    <input type="text" th:field="*{firstName}"
-    >
+    <input type="text" th:field="*{firstName}" required>
     <div th:if="${#fields.hasErrors('firstName')}"
          th:errors="*{firstName}">
     </div>
-    required /><br><br>
+    <br><br>
 
     <label>Last Name:</label><br>
-    <input type="text" th:field="*{lastName}">
+    <input type="text" th:field="*{lastName}" required>
     <div th:if="${#fields.hasErrors('lastName')}"
          th:errors="*{lastName}">
-    </div> required /><br><br>
+    </div>
+    <br><br>
 
     <label>Email:</label><br>
-    <input type="email" th:field="*{email}" required /><br><br>
+    <input type="email" th:field="*{email}" required/><br><br>
 
     <button type="submit">Save</button>
     <a th:href="@{/users}">Cancel</a>

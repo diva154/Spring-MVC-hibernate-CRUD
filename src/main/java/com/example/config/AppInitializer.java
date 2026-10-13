@@ -1,6 +1,4 @@
 package com.example.config;
-
-import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 //Replaces web.xml by inheriting from

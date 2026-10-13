@@ -17,47 +17,50 @@ public class UserController {
 
     //constructor
     @Autowired
-    public  UserController(UserService userService){
+    public UserController(UserService userService) {
 
         this.userService = userService;
     }
+
     @GetMapping
     public String listUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "users";
     }
+
     @GetMapping("/new")
     public String showCreateform(Model model) {
         model.addAttribute("user", new User());
         return "user-form";
     }
 
-        @PostMapping("/save")
-                public String saveUser(
-                        @Valid @ModelAttribute("user") User user,
-                        BindingResult bindingResult) {
+    @PostMapping("/save")
+    public String saveUser(
+            @Valid @ModelAttribute("user") User user,
+            BindingResult bindingResult) {
         // If validation fails,return to the form
-            //also update user form
-            if (bindingResult.hasErrors()) {
-                return "user-form";
-            }
-            if (user.getId() == null) {
-                userService.saveUser(user);
-            }else {
-                userService.updateUser(user);
-            }
-            return  "redirect:/users";
+        //also update user form
+        if (bindingResult.hasErrors()) {
+            return "user-form";
         }
-        @GetMapping("/edit/{id}")
-    public  String showEditForm(@PathVariable("id") Long id, Model model){
-       User user = userService.getUserById(id);
+        if (user.getId() == null) {
+            userService.saveUser(user);
+        } else {
+            userService.updateUser(user);
+        }
+        return "redirect:/users";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable("id") Long id, Model model) {
+        User user = userService.getUserById(id);
         model.addAttribute("user", user);
         return "user-form";
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id){
+    public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
-        return  "redirect:/users";
+        return "redirect:/users";
     }
 }
